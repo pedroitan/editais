@@ -47,7 +47,7 @@ async function scrapeSecultBa(): Promise<Edital[]> {
           
           const titulo = $el.text().trim();
           const link = $el.attr('href') || '';
-          const linkCompleto = link.startsWith('http') ? link : `${source}${link}`;
+          const linkCompleto = link.startsWith('http') ? link : (source.includes('bahiapnab') ? `https://www.bahiapnab.com.br${link}` : link.includes('capta') ? `https://capta.org.br${link}` : link.includes('prosas') ? `https://produtos.prosas.com.br${link}` : `${source}${link}`);
           
           // Evitar duplicatas
           if (seenLinks.has(linkCompleto)) {
