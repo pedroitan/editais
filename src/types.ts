@@ -12,7 +12,8 @@ export type FonteEdital =
   | 'minc' 
   | 'secult-ba' 
   | 'lei-incentivo' 
-  | 'manual';
+  | 'manual'
+  | 'instagram';
 
 export interface Edital {
   id?: string;

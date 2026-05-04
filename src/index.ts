@@ -2,6 +2,7 @@ import { runFunarteScraper } from './scrapers/funarte';
 import { runMincScraper } from './scrapers/minc';
 import { runSecultBaScraper } from './scrapers/secult-ba';
 import { runLeiIncentivoScraper } from './scrapers/lei-incentivo';
+import { runInstagramScraper } from './scrapers/instagram';
 
 async function main() {
   console.log('🚀 Iniciando scraping de editais culturais...');
@@ -11,7 +12,8 @@ async function main() {
     { name: 'Funarte', fn: runFunarteScraper },
     { name: 'MinC', fn: runMincScraper },
     { name: 'SECULT-BA', fn: runSecultBaScraper },
-    { name: 'Lei de Incentivo', fn: runLeiIncentivoScraper }
+    { name: 'Lei de Incentivo', fn: runLeiIncentivoScraper },
+    { name: 'Instagram', fn: runInstagramScraper }
   ];
 
   const results: Array<{ name: string; editais_novos?: number; editais_atualizados?: number; error?: string }> = [];
