@@ -1,0 +1,351 @@
+# PRD — Editais Culturais v1.0
+## Centralizador de Editais Culturais + Alertas de Prazo
+
+**Data:** Maio 2026  
+**Status:** Em Desenvolvimento  
+**Foco:** Scraping de Editais + UX de Prazos  
+**Última Atualização:** 03/05/2026
+
+---
+
+## 🎯 VISÃO ESTRATÉGICA
+
+### O Problema Real
+
+**Artistas/Criadores:** Difícil encontrar editais culturais relevantes  
+**Produtoras:** Perdem prazos importantes por falta de centralização  
+**Instituições:** Editais espalhados em múltiplos sites (Funarte, MinC, SECULT, etc.)
+
+### Nossa Solução
+
+Ecossistema que:
+1. Centraliza editais culturais de múltiplas fontes
+2. Alerta sobre prazos próximos
+3. Filtra por área (música, teatro, dança, artes visuais)
+4. Facilita inscrição com links diretos
+
+### Diferencial Competitivo
+
+> Sites de editais existem, mas são manuais e desatualizados.  
+> **Nós automatizamos scraping + alertas inteligentes.**
+
+---
+
+## 📊 SITUAÇÃO ATUAL (Maio 2026)
+
+### Progresso Atual
+- [x] Setup do projeto (Node.js + TypeScript)
+- [x] Estrutura de scrapers modular
+- [x] Cliente Supabase configurado
+- [x] 4 scrapers implementados (Funarte, MinC, SECULT-BA, Lei de Incentivo)
+- [x] Sistema de deduplicação por (fonte, external_id)
+- [x] GitHub Actions configurado
+- [x] Migration SQL criada
+- [ ] Configurar projeto Supabase e aplicar migrations
+- [ ] Testar scrapers individualmente
+- [ ] Frontend para listagem e busca
+- [ ] Sistema de alertas de prazo
+- [ ] Dashboard admin
+
+### Stack sugerida
+- **Scrapers:** Python (BeautifulSoup/Scrapy) ou Node.js (Playwright/Puppeteer)
+- **Database:** Supabase (PostgreSQL)
+- **Frontend:** Next.js
+- **Deploy:** Vercel
+- **Automação:** GitHub Actions
+
+---
+
+## 🚀 PRIORIDADES v1.0 (MVP)
+
+### Fase 1: Scrapers Básicos (2-3 semanas)
+
+**Fontes alvo:**
+- [ ] Funarte (funarte.gov.br/editais)
+- [ ] Ministério da Cultura (gov.br/cultura/editais)
+- [ ] SECULT-BA (cultura.ba.gov.br/editais)
+- [ ] Lei de Incentivo (editais.leideincentivo.ba.gov.br)
+
+**Campos a extrair:**
+- Título do edital
+- Instituição responsável
+- Área cultural (música, teatro, dança, artes visuais, literatura, audiovisual)
+- Prazo de inscrição (data limite)
+- Valor disponível
+- Requisitos básicos
+- Link oficial
+- Data de publicação
+
+**Deliverables:**
+✅ 4 scrapers funcionando
+✅ Dados normalizados no banco
+✅ GitHub Actions rodando diariamente
+
+---
+
+### Fase 2: Frontend Básico (1-2 semanas)
+
+**Página Home:**
+- [ ] Lista de editais ativos (ordenados por prazo)
+- [ ] Filtros por área cultural
+- [ ] Filtro por prazo (7 dias, 30 dias, todos)
+- [ ] Busca por texto
+- [ ] Badge "Prazo Crítico" (< 7 dias = vermelho)
+
+**Card de Edital:**
+```
+┌─────────────────────────┐
+│ TÍTULO DO EDITAL       │
+│ Instituição: Funarte    │
+│ Área: Música            │
+│ Prazo: 15/05/2026       │
+│ Valor: R$ 50.000        │
+│ [VER DETALHES]          │
+└─────────────────────────┘
+```
+
+**Página de Detalhes:**
+- [ ] Informações completas do edital
+- [ ] Requisitos detalhados
+- [ ] Documentos exigidos
+- [ ] Link para inscrição
+- [ ] Botão "Lembrar Prazo" (salvar no sistema)
+
+**Deliverables:**
+✅ Home com listagem de editais
+✅ Filtros funcionais
+✅ Página de detalhes
+✅ Sistema de lembrete de prazo
+
+---
+
+### Fase 3: Sistema de Alertas (1 semana)
+
+**Backend:**
+- [ ] Tabela `user_subscriptions` (email, edital_id)
+- [ ] API `/api/subscribe` para inscrição em alertas
+- [ ] Job diário para verificar prazos próximos
+- [ ] Envio de email quando prazo < 3 dias
+
+**Frontend:**
+- [ ] Botão "Receber Alerta" em cada edital
+- [ ] Formulário de email
+- [ ] Confirmação de inscrição
+
+**Deliverables:**
+✅ Sistema de alertas por email
+✅ Interface de inscrição
+✅ Job automático de verificação
+
+---
+
+### Fase 4: Dashboard Admin (1 semana)
+
+**Funcionalidades:**
+- [ ] Listagem de editais no banco
+- [ ] Status dos scrapers (última execução, erros)
+- [ ] Editar informações manualmente
+- [ ] Adicionar editais manualmente
+- [ ] Remover editais expirados
+- [ ] Métricas: total de editais, editais ativos, inscrições em alertas
+
+**Deliverables:**
+✅ Dashboard admin funcional
+✅ Gestão de editais
+✅ Monitoramento de scrapers
+
+---
+
+## 📅 ROADMAP EXECUTÁVEL (6-8 semanas)
+
+### Semana 1-2: Scrapers
+- [ ] Setup do projeto (repo, estrutura)
+- [ ] Scraper Funarte
+- [ ] Scraper MinC
+- [ ] Teste e validação
+
+### Semana 3: Scrapers + Database
+- [ ] Scraper SECULT-BA
+- [ ] Scraper Lei de Incentivo
+- [ ] Setup Supabase + migrations
+- [ ] Normalização de dados
+
+### Semana 4-5: Frontend Básico
+- [ ] Setup Next.js
+- [ ] Página Home com listagem
+- [ ] Componentes de card
+- [ ] Filtros por área
+
+### Semana 6: Frontend Avançado
+- [ ] Página de detalhes
+- [ ] Sistema de lembrete
+- [ ] Badge de prazo crítico
+- [ ] Busca por texto
+
+### Semana 7: Sistema de Alertas
+- [ ] Tabela de subscriptions
+- [ ] API de inscrição
+- [ ] Job de verificação
+- [ ] Envio de emails
+
+### Semana 8: Dashboard Admin
+- [ ] Interface admin
+- [ ] Gestão de editais
+- [ ] Monitoramento de scrapers
+- [ ] Deploy e testes finais
+
+---
+
+## 🛠️ STACK TÉCNICA
+
+### Core
+- **Scrapers:** Python (BeautifulSoup + Scrapy) ou Node.js (Playwright)
+- **Database:** Supabase (PostgreSQL)
+- **Frontend:** Next.js 14 + React Server Components
+- **Styling:** Tailwind + shadcn/ui
+- **Deploy:** Vercel (frontend) + GitHub Actions (scrapers)
+
+### Scraping
+- **Funarte:** BeautifulSoup (HTML estático)
+- **MinC:** Playwright (pode ter JS)
+- **SECULT-BA:** BeautifulSoup ou Scrapy
+- **Lei de Incentivo:** BeautifulSoup
+
+### Alertas
+- **Email:** Resend (gratuito) ou SendGrid
+- **Job:** GitHub Actions scheduled workflow
+- **Rate Limiting:** 1 email/dia por usuário
+
+---
+
+## 📊 MÉTRICAS CRÍTICAS
+
+### Produto
+- Editais ativos: 50+ (Mês 1) → 200+ (Mês 6)
+- Usuários inscritos em alertas: 50 (Mês 1) → 500 (Mês 6)
+- Taxa de abertura de emails: >40%
+
+### Scrapers
+- Taxa de sucesso: >95%
+- Tempo de execução: <5min por scraper
+- Editais novos/dia: 2-5
+
+### Monetização (Futuro)
+- MRR: R$0 → R$1.000 (Mês 3) → R$3.000 (Mês 6)
+- Fontes: Destaque de editais, newsletter patrocinada
+
+---
+
+## 🎯 DEFINITION OF DONE (v1.0)
+
+### Técnico
+- ✅ 4 scrapers funcionando
+- ✅ Database com estrutura completa
+- ✅ Frontend com listagem e filtros
+- ✅ Sistema de alertas por email
+- ✅ Dashboard admin funcional
+- ✅ GitHub Actions rodando diariamente
+
+### Visual
+- ✅ Cards de editais claros e informativos
+- ✅ Badge de prazo crítico visível
+- ✅ Filtros intuitivos
+- ✅ Mobile responsivo
+
+### Impacto
+- ✅ Centralização de editais culturais
+- ✅ Alertas automáticos de prazo
+- ✅ Facilidade de descoberta
+
+---
+
+## 🚨 RISCOS E MITIGAÇÕES
+
+| Risco | Mitigação |
+|-------|-----------|
+| Sites mudam layout frequentemente | Scrapers robustos com seletores flexíveis |
+| Editais duplicados entre fontes | Deduplicação por título + instituição |
+| Prazos mal formatados | Parser de datas robusto + fallback manual |
+| Taxa de entrega de emails baixa | Usar serviço confiável (Resend/SendGrid) |
+| Scrapers bloqueados por rate limiting | User-Agent rotation, proxies se necessário |
+
+---
+
+## 📋 PRÓXIMOS PASSOS IMEDIATOS
+
+### Concluído (03/05/2026)
+1. [x] Criar estrutura do projeto
+2. [x] Setup estrutura de projeto (TypeScript/Node.js)
+3. [x] Implementar 4 scrapers base
+4. [x] Configurar GitHub Actions
+5. [x] Criar migration SQL
+
+### Concluído (03/05/2026)
+1. [x] Criar estrutura do projeto
+2. [x] Setup estrutura de projeto (TypeScript/Node.js)
+3. [x] Implementar 4 scrapers base
+4. [x] Configurar GitHub Actions
+5. [x] Criar migration SQL
+6. [x] Configurar Supabase e aplicar migrations
+7. [x] Testar scrapers (Funarte: 66 editais, SECULT-BA: 1, Lei de Incentivo: 1)
+8. [x] Setup Next.js frontend
+9. [x] Criar páginas Home e Detalhes
+
+### Esta Semana
+1. [ ] Testar frontend localmente com dados do Supabase
+2. [ ] Ajustar scraper MinC (timeout nos seletores)
+3. [ ] Implementar sistema de alertas de prazo
+4. [ ] Deploy frontend no Vercel
+
+### Próximas 2 Semanas
+1. [ ] Completar 4 scrapers
+2. [ ] Normalizar dados no banco
+3. [ ] Setup GitHub Actions
+4. [ ] Começar frontend Next.js
+
+### Próximo Mês
+1. [ ] Frontend completo
+2. [ ] Sistema de alertas
+3. [ ] Dashboard admin
+4. [ ] Deploy em produção
+
+---
+
+## 📚 APÊNDICES
+
+### Fontes de Editais Prioritárias
+
+**Nacional:**
+- Funarte (funarte.gov.br)
+- Ministério da Cultura (gov.br/cultura)
+- BNDES (bndes.gov.br/cultura)
+
+**Estadual (Bahia):**
+- SECULT-BA (cultura.ba.gov.br)
+- Lei de Incentivo (editais.leideincentivo.ba.gov.br)
+
+**Municipal (Salvador):**
+- SECULT-Salvador (salvador.ba.gov.br/cultura)
+
+### Campos do Edital
+
+```typescript
+interface Edital {
+  id: string
+  titulo: string
+  instituicao: string
+  area_cultural: 'musica' | 'teatro' | 'danca' | 'artes-visuais' | 'literatura' | 'audiovisual' | 'outros'
+  prazo_inscricao: Date
+  valor_disponivel?: string
+  requisitos?: string
+  documentos?: string[]
+  link_oficial: string
+  data_publicacao: Date
+  fonte: 'funarte' | 'minc' | 'secult-ba' | 'lei-incentivo' | 'manual'
+  is_active: boolean
+}
+```
+
+---
+
+**Documento Vivo • Atualização: Maio 2026 • v1.0**

@@ -1,0 +1,41 @@
+name: Scrape Editais Culturais
+
+on:
+  schedule:
+    # Roda todos os dias às 03:00 BRT (06:00 UTC)
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Permite execução manual
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install Playwright browsers
+        run: npx playwright install chromium
+      
+      - name: Run scrapers
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run build && npm start
+      
+      - name: Report success
+        if: success()
+        run: echo "✅ Scraping concluído com sucesso"
+      
+      - name: Report failure
+        if: failure()
+        run: echo "❌ Scraping falhou"

@@ -1,0 +1,37 @@
+{
+  "name": "edital-cultural-scraper",
+  "version": "1.0.0",
+  "description": "Centralizador de Editais Culturais - Scrapers",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "scrape:funarte": "tsx src/scrapers/funarte.ts",
+    "scrape:minc": "tsx src/scrapers/minc.ts",
+    "scrape:secult-ba": "tsx src/scrapers/secult-ba.ts",
+    "scrape:lei-incentivo": "tsx src/scrapers/lei-incentivo.ts",
+    "alerts:check": "tsx src/alert-job.ts"
+  },
+  "keywords": [
+    "scraper",
+    "editais",
+    "cultura",
+    "supabase"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.92.0",
+    "@supabase/supabase-js": "^2.45.4",
+    "cheerio": "^1.0.0",
+    "date-fns": "^4.1.0",
+    "dotenv": "^17.4.2",
+    "playwright": "^1.48.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3"
+  }
+}
